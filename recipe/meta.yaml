@@ -1,4 +1,4 @@
-{% set version = "4.9.2" %}
+{% set version = "4.9.3" %}
 
 package:
     name: proj.4
@@ -6,10 +6,8 @@ package:
 
 source:
     fn:  proj-{{ version }}.tar.gz
-    url: http://download.osgeo.org/proj/proj-{{ version }}.tar.gz
-    sha256: 60bf9ad1ed1c18158e652dfff97865ba6fb2b67f1511bc8dceae4b3c7e657796
-    patches:
-        - make_check.patch  # [osx]
+    url: http://download.osgeo.org/proj/proj-{{ version }}RC1.tar.gz
+    sha256: d08ea946a1fba6a78fc9c36ee98f24c81dd30f392efd153f3ad5bb7982c9a14a
 
 build:
     number: 0
@@ -30,11 +28,13 @@ test:
     commands:
         - echo -105 40 | proj +proj=utm +zone=13 +ellps=WGS84
         - echo -117 30 | cs2cs +proj=latlong +datum=NAD27 +to +proj=latlong +datum=NAD83
+        - conda inspect linkages -n _test proj.4  # [not win]
+        - conda inspect objects -n _test proj.4  # [osx]
 
 about:
     home: http://trac.osgeo.org/proj/
     license: MIT
-    summary: Cartographic projection software
+    summary: 'Cartographic projection software.'
 
 
 extra:
