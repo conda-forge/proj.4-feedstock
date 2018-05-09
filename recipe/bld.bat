@@ -1,7 +1,7 @@
 cd %SRC_DIR%\nad
-curl -fsS -o proj-datumgrid-1.6.zip http://download.osgeo.org/proj/proj-datumgrid-1.6.zip
-7z x proj-datumgrid-1.6.zip
-del proj-datumgrid-1.6.zip
+curl -fsS -o proj-datumgrid-1.7.zip http://download.osgeo.org/proj/proj-datumgrid-1.7.zip
+7z x proj-datumgrid-1.7.zip
+del proj-datumgrid-1.7.zip
 cd ..
 
 nmake /f makefile.vc

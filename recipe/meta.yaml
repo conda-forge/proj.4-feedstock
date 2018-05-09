@@ -39,7 +39,7 @@ test:
     - conda inspect objects -p $PREFIX proj4  # [osx]
 
 about:
-  home: http://trac.osgeo.org/proj
+  home: https://proj4.org/
   license: MIT
   license_file: COPYING
   summary: 'Cartographic projection software.'
