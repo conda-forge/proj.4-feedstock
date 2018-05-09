@@ -1,7 +1,7 @@
 About proj4
 ===========
 
-Home: https://proj4.org
+Home: https://proj4.org/
 
 Package license: MIT
 
@@ -14,14 +14,16 @@ Summary: Cartographic projection software.
 Current build status
 ====================
 
-Linux: [![Circle CI](https://circleci.com/gh/conda-forge/proj.4-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/proj.4-feedstock)
-OSX: [![TravisCI](https://travis-ci.org/conda-forge/proj.4-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/proj.4-feedstock)
-Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/conda-forge/proj.4-feedstock?svg=True)](https://ci.appveyor.com/project/conda-forge/proj-4-feedstock/branch/master)
+[![Linux](https://img.shields.io/circleci/project/github/conda-forge/proj.4-feedstock/master.svg?label=Linux)](https://circleci.com/gh/conda-forge/proj.4-feedstock)
+[![OSX](https://img.shields.io/travis/conda-forge/proj.4-feedstock/master.svg?label=macOS)](https://travis-ci.org/conda-forge/proj.4-feedstock)
+[![Windows](https://img.shields.io/appveyor/ci/conda-forge/proj.4-feedstock/master.svg?label=Windows)](https://ci.appveyor.com/project/conda-forge/proj-4-feedstock/branch/master)
 
 Current release info
 ====================
-Version: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/proj4/badges/version.svg)](https://anaconda.org/conda-forge/proj4)
-Downloads: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/proj4/badges/downloads.svg)](https://anaconda.org/conda-forge/proj4)
+
+| Name | Downloads | Version | Platforms |
+| --- | --- | --- | --- |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-proj4-green.svg)](https://anaconda.org/conda-forge/proj4) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/proj4.svg)](https://anaconda.org/conda-forge/proj4) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/proj4.svg)](https://anaconda.org/conda-forge/proj4) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/proj4.svg)](https://anaconda.org/conda-forge/proj4) |
 
 Installing proj4
 ================
