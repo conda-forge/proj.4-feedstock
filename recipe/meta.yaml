@@ -23,6 +23,8 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
+    - pkg-config  # [unix]
+    - make        # [unix]
 
 test:
   commands:
