@@ -26,7 +26,8 @@ requirements:
     - {{ compiler('cxx') }}
     - pkg-config  # [unix]
     - make        # [unix]
-    - sqlite3
+  host:
+    - sqlite
 
 test:
   commands:
