@@ -8,3 +8,8 @@ cxx_compiler:
 - gxx
 docker_image:
 - condaforge/linux-anvil-comp7
+pin_run_as_build:
+  sqlite:
+    max_pin: x
+sqlite:
+- '3'

@@ -6,6 +6,11 @@ channel_targets:
 - conda-forge main
 cxx_compiler:
 - vs2008
+pin_run_as_build:
+  sqlite:
+    max_pin: x
+sqlite:
+- '3'
 zip_keys:
 - - c_compiler
   - cxx_compiler
