@@ -1,4 +1,4 @@
-provider: {win: azure}
 conda_forge_output_validation: true
 bot:
   automerge: true
+provider: {win: azure, linux_aarch64: default, linux_ppc64le: default}

@@ -9,7 +9,7 @@ source:
     sha256: 324e7abb5569fb5f787dadf1d4474766915c485a188cf48cf07153b99156b5f9
 
 build:
-  number: 0
+  number: 1
   run_exports:
     # so name changes in bugfix revisions.  Pin to bugfix revision.
     #    https://abi-laboratory.pro/tracker/timeline/proj/
