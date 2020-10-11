@@ -22,8 +22,8 @@ requirements:
     - make  # [not win]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - automake # [not win]
-    - libtool # [not win]
+    - automake  # [not win]
+    - libtool  # [not win]
   host:
     - sqlite
     - libtiff
