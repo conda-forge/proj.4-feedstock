@@ -1,6 +1,6 @@
 ---
 kind: pipeline
-name: linux_aarch64_
+name: linux_aarch64_c_compiler_version7cx_h45a2388a83
 
 platform:
   os: linux
@@ -10,7 +10,7 @@ steps:
 - name: Install and build
   image: condaforge/linux-anvil-aarch64
   environment:
-    CONFIG: linux_aarch64_
+    CONFIG: linux_aarch64_c_compiler_version7cxx_compiler_version7
     UPLOAD_PACKAGES: True
     PLATFORM: linux-aarch64
     BINSTAR_TOKEN:

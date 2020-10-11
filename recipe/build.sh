@@ -3,6 +3,10 @@
 export CFLAGS="-O2 -Wl,-S ${CFLAGS}"
 export CXXFLAGS="-O2 -Wl,-S ${CXXFLAGS}"
 
+if [ ! -f configure ]; then
+    ./autogen.sh
+fi
+
 ./configure --prefix=${PREFIX} --host=${HOST} --disable-static
 
 make -j${CPU_COUNT}
