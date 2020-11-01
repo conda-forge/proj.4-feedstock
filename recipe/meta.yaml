@@ -1,15 +1,15 @@
-{% set version = "7.1.1" %}
+{% set version = "7.2.0" %}
 
 package:
   name: proj
   version: {{ version }}
 
 source:
-    url: http://download.osgeo.org/proj/proj-{{ version }}.tar.gz
-    sha256: 324e7abb5569fb5f787dadf1d4474766915c485a188cf48cf07153b99156b5f9
+  url: http://download.osgeo.org/proj/proj-{{ version }}.tar.gz
+  sha256: 2957798e5fe295ff96a2af1889d0428e486363d210889422f76dd744f7885763
 
 build:
-  number: 3
+  number: 0
   run_exports:
     # so name changes in bugfix revisions.  Pin to bugfix revision.
     #    https://abi-laboratory.pro/tracker/timeline/proj/
