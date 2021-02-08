@@ -12,7 +12,9 @@ fi
 make -j${CPU_COUNT}
 # skip tests on linux32 due to rounding error causing issues
 if [[ ! ${HOST} =~ .*linux.* ]] || [[ ! ${ARCH} == 32 ]]; then
+if [[ "${CONDA_BUILD_CROSS_COMPILATION}" != "1" ]]; then
     make check -j${CPU_COUNT}
+fi
 fi
 make install -j${CPU_COUNT}
 
