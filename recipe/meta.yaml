@@ -24,6 +24,7 @@ requirements:
     - {{ compiler('cxx') }}
     - automake  # [not win]
     - libtool  # [not win]
+    - gnuconfig  # [not win]
   host:
     - sqlite
     - libtiff
