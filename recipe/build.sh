@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Get an updated config.sub and config.guess
+cp $BUILD_PREFIX/share/gnuconfig/config.* .
+
 export CFLAGS="-O2 -Wl,-S ${CFLAGS}"
 export CXXFLAGS="-O2 -Wl,-S ${CXXFLAGS}"
 
