@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Get an updated config.sub and config.guess
+cp $BUILD_PREFIX/share/gnuconfig/config.* .
+
 export CFLAGS="-O2 -Wl,-S ${CFLAGS}"
 export CXXFLAGS="-O2 -Wl,-S ${CXXFLAGS}"
 
@@ -12,7 +15,9 @@ fi
 make -j${CPU_COUNT}
 # skip tests on linux32 due to rounding error causing issues
 if [[ ! ${HOST} =~ .*linux.* ]] || [[ ! ${ARCH} == 32 ]]; then
+if [[ "${CONDA_BUILD_CROSS_COMPILATION}" != "1" ]]; then
     make check -j${CPU_COUNT}
+fi
 fi
 make install -j${CPU_COUNT}
 
