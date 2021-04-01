@@ -1,24 +1,23 @@
 #!/bin/bash
 
-# Get an updated config.sub and config.guess
-cp $BUILD_PREFIX/share/gnuconfig/config.* .
+mkdir -p build && cd build
 
-export CFLAGS="-O2 -Wl,-S ${CFLAGS}"
-export CXXFLAGS="-O2 -Wl,-S ${CXXFLAGS}"
+cmake ${CMAKE_ARGS} \
+      -D CMAKE_BUILD_TYPE=Release \
+      -D BUILD_SHARED_LIBS=ON \
+      -D CMAKE_INSTALL_PREFIX=${PREFIX} \
+      -D CMAKE_INSTALL_LIBDIR=lib \
+      ${SRC_DIR}
 
-if [ ! -f configure ]; then
-    ./autogen.sh
-fi
+make -j${CPU_COUNT} ${VERBOSE_CM}
 
-./configure --prefix=${PREFIX} --host=${HOST} --disable-static
-
-make -j${CPU_COUNT}
 # skip tests on linux32 due to rounding error causing issues
 if [[ ! ${HOST} =~ .*linux.* ]] || [[ ! ${ARCH} == 32 ]]; then
 if [[ "${CONDA_BUILD_CROSS_COMPILATION}" != "1" ]]; then
-    make check -j${CPU_COUNT}
+    ctest --output-on-failure
 fi
 fi
+
 make install -j${CPU_COUNT}
 
 ACTIVATE_DIR=${PREFIX}/etc/conda/activate.d
