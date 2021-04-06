@@ -2,11 +2,18 @@
 
 mkdir -p build && cd build
 
+if [[ "$CONDA_BUILD_CROSS_COMPILATION" != "1" ]]; then
+    EXE_SQLITE3=${PREFIX}/bin/sqlite3
+else
+    EXE_SQLITE3=${BUILD_PREFIX}/bin/sqlite3
+fi
+
 cmake ${CMAKE_ARGS} \
       -D CMAKE_BUILD_TYPE=Release \
       -D BUILD_SHARED_LIBS=ON \
       -D CMAKE_INSTALL_PREFIX=${PREFIX} \
       -D CMAKE_INSTALL_LIBDIR=lib \
+      -D EXE_SQLITE3=${EXE_SQLITE3} \
       ${SRC_DIR}
 
 make -j${CPU_COUNT} ${VERBOSE_CM}
