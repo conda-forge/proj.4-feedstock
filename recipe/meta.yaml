@@ -1,4 +1,4 @@
-{% set version = "8.0.0" %}
+{% set version = "8.0.1" %}
 
 package:
   name: proj
@@ -6,7 +6,7 @@ package:
 
 source:
   url: http://download.osgeo.org/proj/proj-{{ version }}.tar.gz
-  sha256: aa5d4b934450149a350aed7e5fbac880e2f7d3fa2f251c26cb64228f96a2109e
+  sha256: e0463a8068898785ca75dd49a261d3d28b07d0a88f3b657e8e0089e16a0375fa
 
 build:
   number: 0
