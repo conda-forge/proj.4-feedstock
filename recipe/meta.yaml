@@ -9,7 +9,7 @@ source:
   sha256: 22c5cdc5aa0832077b16c95ebeec748a0942811c1c3438c33d43c8d2ead59f48
 
 build:
-  number: 0
+  number: 1
   run_exports:
     # so name changes in bugfix revisions.  Pin to bugfix revision.
     #    https://abi-laboratory.pro/tracker/timeline/proj/
@@ -17,14 +17,10 @@ build:
 
 requirements:
   build:
-    - cmake  # [win]
-    - pkg-config  # [not win]
+    - cmake
     - make  # [not win]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - automake  # [not win]
-    - libtool  # [not win]
-    - gnuconfig  # [not win]
     - sqlite     # [build_platform != target_platform]
   host:
     - sqlite
