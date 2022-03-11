@@ -7,9 +7,11 @@ package:
 source:
   url: https://download.osgeo.org/proj/proj-{{ version }}.tar.gz
   sha256: 0620aa01b812de00b54d6c23e7c5cc843ae2cd129b24fabe411800302172b989
+  patches:
+    - 0001-nkg.gie-update-results.patch
 
 build:
-  number: 0
+  number: 1
   run_exports:
     # so name changes in bugfix revisions.  Pin to bugfix revision.
     #    https://abi-laboratory.pro/tracker/timeline/proj/
