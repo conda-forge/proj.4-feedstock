@@ -7,8 +7,6 @@ package:
 source:
   url: https://download.osgeo.org/proj/proj-{{ version }}.tar.gz
   sha256: 737eaacbe7906d0d6ff43f0d9ebedc5c734cccc9e6b8d7beefdec3ab22d9a6a3
-  patches:
-    - 0001-nkg.gie-update-results.patch
 
 build:
   number: 0
