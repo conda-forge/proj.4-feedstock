@@ -6,7 +6,7 @@
 )
 @set "PROJ_LIB=%CONDA_PREFIX%\Library\share\proj"
 
-@if exist %CONDA_PREFIX%\Library\share\proj\copyright_and_licenses.csv (
+@if exist "%CONDA_PREFIX%\Library\share\proj\copyright_and_licenses.csv" (
     rem proj-data is installed because its license was copied over
     @set "PROJ_NETWORK=OFF"
 ) else (
