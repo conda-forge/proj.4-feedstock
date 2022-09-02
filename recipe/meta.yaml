@@ -7,6 +7,8 @@ package:
 source:
   url: https://download.osgeo.org/proj/proj-{{ version }}.tar.gz
   sha256: 81b2239b94cad0886222cde4f53cb49d34905aad2a1317244a0c30a553db2315
+  patches:
+    - 0001-disable-geodsigntest.patch
 
 build:
   number: 0
