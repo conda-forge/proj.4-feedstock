@@ -1,4 +1,4 @@
-{% set version = "9.1.0" %}
+{% set version = "9.1.1" %}
 
 package:
   name: proj
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://download.osgeo.org/proj/proj-{{ version }}.tar.gz
-  sha256: 81b2239b94cad0886222cde4f53cb49d34905aad2a1317244a0c30a553db2315
+  sha256: 003cd4010e52bb5eb8f7de1c143753aa830c8902b6ed01209f294846e40e6d39
   patches:
     - 0001-disable-geodsigntest.patch
 
