@@ -18,13 +18,6 @@ libtiff:
 - '4'
 macos_machine:
 - arm64-apple-darwin20.0.0
-pin_run_as_build:
-  libcurl:
-    max_pin: x
-  libtiff:
-    max_pin: x
-  sqlite:
-    max_pin: x
 sqlite:
 - '3'
 target_platform:
