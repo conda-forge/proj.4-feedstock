@@ -1,11 +1,11 @@
-About proj
-==========
+About proj-feedstock
+====================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/proj.4-feedstock/blob/main/LICENSE.txt)
 
 Home: https://proj.org/
 
 Package license: MIT
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/proj.4-feedstock/blob/main/LICENSE.txt)
 
 Summary: Cartographic Projections and Coordinate Transformations Library
 
