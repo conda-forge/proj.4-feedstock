@@ -8,8 +8,7 @@ source:
   url: https://download.osgeo.org/proj/proj-{{ version }}.tar.gz
   sha256: dea816f5aa732ae6b2ee3977b9bdb28b1d848cf56a1aad8faf6708b89f0ed50e
   patches:
-    - 0001-disable-geodsigntest.patch
-    - 0002-add-proj-networking-state-cache-inf.patch
+    - define_OLD_BUGGY_REMQUO.patch
 
 build:
   number: 0
