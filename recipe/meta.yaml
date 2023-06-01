@@ -1,4 +1,4 @@
-{% set version = "9.2.0" %}
+{% set version = "9.2.1" %}
 
 package:
   name: proj
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://download.osgeo.org/proj/proj-{{ version }}.tar.gz
-  sha256: dea816f5aa732ae6b2ee3977b9bdb28b1d848cf56a1aad8faf6708b89f0ed50e
+  sha256: 15ebf4afa8744b9e6fccb5d571fc9f338dc3adcf99907d9e62d1af815d4971a1
   patches:
     - define_OLD_BUGGY_REMQUO.patch
 
