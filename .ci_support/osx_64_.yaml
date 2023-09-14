@@ -15,7 +15,7 @@ cxx_compiler_version:
 libcurl:
 - '8'
 libtiff:
-- '4.5'
+- '4.6'
 macos_machine:
 - x86_64-apple-darwin13.4.0
 sqlite:

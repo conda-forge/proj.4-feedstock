@@ -9,7 +9,7 @@ cxx_compiler:
 libcurl:
 - '8'
 libtiff:
-- '4.5'
+- '4.6'
 sqlite:
 - '3'
 target_platform:
