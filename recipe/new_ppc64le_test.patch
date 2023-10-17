@@ -1,0 +1,40 @@
+From fae9b3400c86e7b60c3bdee4af141eac2eeb77c7 Mon Sep 17 00:00:00 2001
+From: Even Rouault <even.rouault@spatialys.com>
+Date: Tue, 17 Oct 2023 00:24:35 +0200
+Subject: [PATCH] [DO NOT MERGE ME] Test/debug #3922
+ 
+diff --git a/test/cli/testvarious b/test/cli/testvarious
+index 8134e54dca..5f53ee4de5 100755
+--- a/test/cli/testvarious
++++ b/test/cli/testvarious
+@@ -1352,6 +1352,17 @@ $EXE -d 8 --t_epoch 2022 "GDA2020" "ITRF2014" -E >>${OUT} 2>&1 <<EOF
+ -30 150
+ EOF
+ 
++echo "##############################################################" >> ${OUT}
++echo "Test PROJ_NETWORK=ON -d 3 EPSG:26915 +to EPSG:26715" >> ${OUT}
++PROJ_NETWORK=ON $EXE -d 3 EPSG:26915 +to EPSG:26715 -E >>${OUT} 2>&1 <<EOF
++569704.57 4269024.67
++EOF
++
++PROJ_NETWORK=ON $EXE -d 3 EPSG:26915 +to EPSG:26715 -E >>${OUT} 2>&1 <<EOF
++569704.57 4269024.67
++EOF
++
++
+ 
+ # Done!
+ # do 'diff' with distribution results
+diff --git a/test/cli/tv_out.dist b/test/cli/tv_out.dist
+index 11097644d6..ab703c828c 100644
+--- a/test/cli/tv_out.dist
++++ b/test/cli/tv_out.dist
+@@ -646,3 +646,7 @@ Test --s_epoch
+ ##############################################################
+ Test --t_epoch
+ -30 150	-29.99999901	150.00000044 -0.00031879
++##############################################################
++Test PROJ_NETWORK=ON -d 3 EPSG:26915 +to EPSG:26715
++569704.57 4269024.67	569722.398	4268814.269 0.000
++569704.57 4269024.67	569722.398	4268814.269 0.000
+
