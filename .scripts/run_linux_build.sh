@@ -39,7 +39,6 @@ setup_conda_rc ./ ./recipe ./.ci_support/${CONFIG}.yaml
 #fi
 
 echo -e "\n\nRunning the build setup script."
-env
 
 ## Copied from build_setup.sh
 
@@ -49,11 +48,14 @@ export FEEDSTOCK_ROOT="${FEEDSTOCK_ROOT:-/home/conda/feedstock_root}"
 
 
 
-
+echo "$PWD | ${FEEDSTOCK_ROOT}"
+ls -l ${FEEDSTOCK_ROOT}
+echo "${CONDA_PREFIX} | ${CONDA_BLD_PATH}"
 
 # source run_conda_forge_build_setup
 
 # equivalent of run_conda_forge_build_setup
+set -x
 export PYTHONUNBUFFERED=1
 
 conda config --env --set show_channel_urls true
