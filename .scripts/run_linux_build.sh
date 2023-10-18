@@ -64,6 +64,8 @@ echo -e "\n\nDone setting conda config"
 export "CONDA_BLD_PATH=${PWD}/build_artifacts"
 echo "$PWD"
 echo "${CONDA_PREFIX} | ${CONDA_BLD_PATH}"
+ls -l "${CONDA_PREFIX}" || echo "Failed to list conda prefix"
+ls -l "${CONDA_BLD_PATH}" || echo "Failed to list conda build path"
 
 # 2 cores available on TravisCI workers: https://docs.travis-ci.com/user/reference/overview/
 # CPU_COUNT is passed through conda build: https://github.com/conda/conda-build/pull/1149
@@ -82,11 +84,11 @@ echo -e "\n\nDone with activate script"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-echo -n "\n\nSourcing cross compile support"
+echo -e "\n\nSourcing cross compile support | SCRIPT_DIR: ${SCRIPT_DIR}"
 
 source ${SCRIPT_DIR}/cross_compile_support.sh
 
-echo -n "\n\nAfter cross compile support source"
+echo -e "\n\nAfter cross compile support source"
 
 conda info
 conda config --env --show-sources
