@@ -40,14 +40,13 @@ setup_conda_rc ./ ./recipe ./.ci_support/${CONFIG}.yaml
 
 echo -e "\n\nRunning the build setup script."
 
-echo "$PWD"
-echo "${CONDA_PREFIX} | ${CONDA_BLD_PATH}"
-
 # source run_conda_forge_build_setup
 
 # equivalent of run_conda_forge_build_setup
 set -x
 export PYTHONUNBUFFERED=1
+
+echo -e "\n\nAbout to set conda config"
 
 conda config --env --set show_channel_urls true
 conda config --env --set auto_update_conda false
@@ -60,11 +59,17 @@ conda config --env --remove-key aggressive_update_packages
 conda config --env --append aggressive_update_packages ca-certificates
 conda config --env --append aggressive_update_packages certifi
 
+echo -e "\n\nDone setting conda config"
+
 export "CONDA_BLD_PATH=${PWD}/build_artifacts"
+echo "$PWD"
+echo "${CONDA_PREFIX} | ${CONDA_BLD_PATH}"
 
 # 2 cores available on TravisCI workers: https://docs.travis-ci.com/user/reference/overview/
 # CPU_COUNT is passed through conda build: https://github.com/conda/conda-build/pull/1149
 export CPU_COUNT="${CPU_COUNT:-2}"
+
+echo -e "\n\nCreating activate.d dir and script"
 
 mkdir -p "${CONDA_PREFIX}/etc/conda/activate.d"
 echo "export CONDA_BLD_PATH='${CONDA_BLD_PATH}'"         > "${CONDA_PREFIX}/etc/conda/activate.d/conda-forge-ci-setup-activate.sh"
@@ -73,8 +78,15 @@ if [ -n "${CPU_COUNT-}" ]; then
 fi
 echo "export PYTHONUNBUFFERED='${PYTHONUNBUFFERED}'"    >> "${CONDA_PREFIX}/etc/conda/activate.d/conda-forge-ci-setup-activate.sh"
 
+echo -e "\n\nDone with activate script"
+
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+echo -n "\n\nSourcing cross compile support"
+
 source ${SCRIPT_DIR}/cross_compile_support.sh
+
+echo -n "\n\nAfter cross compile support source"
 
 conda info
 conda config --env --show-sources
