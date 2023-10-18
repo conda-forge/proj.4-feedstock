@@ -40,16 +40,7 @@ setup_conda_rc ./ ./recipe ./.ci_support/${CONFIG}.yaml
 
 echo -e "\n\nRunning the build setup script."
 
-## Copied from build_setup.sh
-
-export FEEDSTOCK_ROOT="${FEEDSTOCK_ROOT:-/home/conda/feedstock_root}"
-
-## End of build_setup.sh copy
-
-
-
-echo "$PWD | ${FEEDSTOCK_ROOT}"
-ls -l ${FEEDSTOCK_ROOT}
+echo "$PWD"
 echo "${CONDA_PREFIX} | ${CONDA_BLD_PATH}"
 
 # source run_conda_forge_build_setup
@@ -69,18 +60,11 @@ conda config --env --remove-key aggressive_update_packages
 conda config --env --append aggressive_update_packages ca-certificates
 conda config --env --append aggressive_update_packages certifi
 
-export "CONDA_BLD_PATH=${FEEDSTOCK_ROOT}/build_artifacts"
+export "CONDA_BLD_PATH=${PWD}/build_artifacts"
 
 # 2 cores available on TravisCI workers: https://docs.travis-ci.com/user/reference/overview/
 # CPU_COUNT is passed through conda build: https://github.com/conda/conda-build/pull/1149
 export CPU_COUNT="${CPU_COUNT:-2}"
-
-# Need strict priority for
-# - pypy as defaults is not fixed
-# - cos7 as defaults is not fixed
-# but ppl can turn this off
-conda config --env --set channel_priority $(cat ${FEEDSTOCK_ROOT}/conda-forge.yml | shyaml get-value channel_priority strict || echo strict)
-
 
 mkdir -p "${CONDA_PREFIX}/etc/conda/activate.d"
 echo "export CONDA_BLD_PATH='${CONDA_BLD_PATH}'"         > "${CONDA_PREFIX}/etc/conda/activate.d/conda-forge-ci-setup-activate.sh"
