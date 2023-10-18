@@ -30,12 +30,13 @@ mamba update --update-specs --yes --quiet --channel conda-forge --strict-channel
 
 
 
-echo -e "\n\nSetting up the condarc and mangling the compiler."
+#echo -e "\n\nSetting up the condarc and mangling the compiler."
+echo -e "\n\nSetting up the condarc."
 setup_conda_rc ./ ./recipe ./.ci_support/${CONFIG}.yaml
 
-if [[ "${CI:-}" != "" ]]; then
-  mangle_compiler ./ ./recipe .ci_support/${CONFIG}.yaml
-fi
+#if [[ "${CI:-}" != "" ]]; then
+#  mangle_compiler ./ ./recipe .ci_support/${CONFIG}.yaml
+#fi
 
 echo -e "\n\nRunning the build setup script."
 source run_conda_forge_build_setup
