@@ -39,6 +39,9 @@ setup_conda_rc ./ ./recipe ./.ci_support/${CONFIG}.yaml
 #fi
 
 echo -e "\n\nRunning the build setup script."
+echo "${FEEDSTOCK_ROOT} | ${CI_SUPPORT} | ${CUDA_HOME}"
+env
+CUDA_HOME=""
 source run_conda_forge_build_setup
 
 ( endgroup "Configuring conda" ) 2> /dev/null
