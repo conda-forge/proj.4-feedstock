@@ -39,10 +39,64 @@ setup_conda_rc ./ ./recipe ./.ci_support/${CONFIG}.yaml
 #fi
 
 echo -e "\n\nRunning the build setup script."
-echo "${FEEDSTOCK_ROOT} | ${CI_SUPPORT} | ${CUDA_HOME}"
 env
-CUDA_HOME=""
-source run_conda_forge_build_setup
+
+## Copied from build_setup.sh
+
+export FEEDSTOCK_ROOT="${FEEDSTOCK_ROOT:-/home/conda/feedstock_root}"
+
+## End of build_setup.sh copy
+
+
+
+
+
+# source run_conda_forge_build_setup
+
+# equivalent of run_conda_forge_build_setup
+export PYTHONUNBUFFERED=1
+
+conda config --env --set show_channel_urls true
+conda config --env --set auto_update_conda false
+conda config --env --set add_pip_as_python_dependency false
+# Otherwise packages that don't explicitly pin openssl in their requirements
+# are forced to the newest OpenSSL version, even if their dependencies don't
+# support it.
+conda config --env --append aggressive_update_packages ca-certificates # add something to make sure the key exists
+conda config --env --remove-key aggressive_update_packages
+conda config --env --append aggressive_update_packages ca-certificates
+conda config --env --append aggressive_update_packages certifi
+
+export "CONDA_BLD_PATH=${FEEDSTOCK_ROOT}/build_artifacts"
+
+# 2 cores available on TravisCI workers: https://docs.travis-ci.com/user/reference/overview/
+# CPU_COUNT is passed through conda build: https://github.com/conda/conda-build/pull/1149
+export CPU_COUNT="${CPU_COUNT:-2}"
+
+# Need strict priority for
+# - pypy as defaults is not fixed
+# - cos7 as defaults is not fixed
+# but ppl can turn this off
+conda config --env --set channel_priority $(cat ${FEEDSTOCK_ROOT}/conda-forge.yml | shyaml get-value channel_priority strict || echo strict)
+
+
+mkdir -p "${CONDA_PREFIX}/etc/conda/activate.d"
+echo "export CONDA_BLD_PATH='${CONDA_BLD_PATH}'"         > "${CONDA_PREFIX}/etc/conda/activate.d/conda-forge-ci-setup-activate.sh"
+if [ -n "${CPU_COUNT-}" ]; then
+    echo "export CPU_COUNT='${CPU_COUNT}'"                  >> "${CONDA_PREFIX}/etc/conda/activate.d/conda-forge-ci-setup-activate.sh"
+fi
+echo "export PYTHONUNBUFFERED='${PYTHONUNBUFFERED}'"    >> "${CONDA_PREFIX}/etc/conda/activate.d/conda-forge-ci-setup-activate.sh"
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+source ${SCRIPT_DIR}/cross_compile_support.sh
+
+conda info
+conda config --env --show-sources
+conda list --show-channel-urls
+
+
+### END OF run_conda_forge_build_setup ####
+
 
 ( endgroup "Configuring conda" ) 2> /dev/null
 
