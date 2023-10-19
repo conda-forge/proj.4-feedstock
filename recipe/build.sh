@@ -8,8 +8,10 @@ else
     EXE_SQLITE3=${BUILD_PREFIX}/bin/sqlite3
 fi
 
-echo "Existing cmake args: ${CMAKE_ARGS}"
-cmake ${CMAKE_ARGS} -O0 \
+export CFLAGS="${CFLAGS} -O0"
+export CXXFLAGS="${CXXFLAGS} -O0"
+echo "CFLAGS: ${CFLAGS} | CXXFLAGS: ${CXXFLAGS}"
+cmake ${CMAKE_ARGS} \
       -D CMAKE_BUILD_TYPE=Release \
       -D BUILD_SHARED_LIBS=ON \
       -D CMAKE_INSTALL_PREFIX=${PREFIX} \
