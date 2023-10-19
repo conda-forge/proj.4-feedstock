@@ -43,7 +43,7 @@ test:
     # should be the first CLI test to ensure cs2cs results don't change
     # See https://github.com/conda-forge/proj.4-feedstock/pull/139
     - >-
-      [[ $(echo 569704.57 4269024.67 | cs2cs EPSG:26915 +to EPSG:26715) == $(echo 569704.57 4269024.67 | cs2cs EPSG:26915 +to EPSG:26715) ]]
+      [[ $(echo 569704.57 4269024.67 | cs2cs EPSG:26915 +to EPSG:26715) == $(echo 569704.57 4269024.67 | cs2cs EPSG:26915 +to EPSG:26715) ]]  # [unix]
     - echo -105 40 | proj +proj=utm +zone=13 +ellps=WGS84
     - echo -117 30 | cs2cs +proj=latlong +datum=NAD27 +to +proj=latlong +datum=NAD83
     - echo -105 40 | cs2cs +init=epsg:4326 +to +init=epsg:2975
