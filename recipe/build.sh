@@ -8,7 +8,8 @@ else
     EXE_SQLITE3=${BUILD_PREFIX}/bin/sqlite3
 fi
 
-cmake ${CMAKE_ARGS} \
+echo "Existing cmake args: ${CMAKE_ARGS}"
+cmake ${CMAKE_ARGS} -O0 \
       -D CMAKE_BUILD_TYPE=Release \
       -D BUILD_SHARED_LIBS=ON \
       -D CMAKE_INSTALL_PREFIX=${PREFIX} \
