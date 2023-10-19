@@ -41,7 +41,6 @@ test:
     - test -f ${PREFIX}/lib/libproj${SHLIB_EXT}  # [unix]
     - test ! -f ${PREFIX}/lib/libproj.a          # [unix]
     - if not exist %LIBRARY_LIB%\\proj.lib exit 1  # [win]
-    - export PROJ_DEBUG=3
     - echo 0 0 | cs2cs EPSG:3034 +to EPSG:3035
     - echo 0 0 | cs2cs EPSG:3034 +to EPSG:3035
     - echo 569704.57 4269024.67 | cs2cs EPSG:26915 +to EPSG:26715
