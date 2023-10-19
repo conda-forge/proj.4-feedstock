@@ -9,7 +9,7 @@ else
 fi
 
 cmake ${CMAKE_ARGS} \
-      -D CMAKE_BUILD_TYPE=Debug \
+      -D CMAKE_BUILD_TYPE=Release \
       -D BUILD_SHARED_LIBS=ON \
       -D CMAKE_INSTALL_PREFIX=${PREFIX} \
       -D CMAKE_INSTALL_LIBDIR=lib \
