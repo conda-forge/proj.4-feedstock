@@ -1,7 +1,7 @@
 c_compiler:
 - gcc
 c_compiler_version:
-- '12'
+- '11'
 cdt_name:
 - cos7
 channel_sources:
@@ -11,13 +11,13 @@ channel_targets:
 cxx_compiler:
 - gxx
 cxx_compiler_version:
-- '12'
+- '11'
 docker_image:
 - quay.io/condaforge/linux-anvil-ppc64le
 libcurl:
-- '8'
+- '7'
 libtiff:
-- '4.6'
+- '4.3'
 sqlite:
 - '3'
 target_platform:
