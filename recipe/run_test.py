@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 import difflib
+import os
+import shutil
 import subprocess
 import sys
 
@@ -8,9 +10,14 @@ print("Running " + sys.argv[0] + " ...\n")
 
 
 def run(cmd, input, print_debug=False):
-    print(f"echo {input} | {cmd}")
     args = cmd.split()
-    env = {"PROJ_DEBUG": "3"}
+    cmd0 = shutil.which(args[0])
+    if cmd0 is None:
+        sys.exit(f"first command not found: {args[0]}")
+    args[0] = cmd0
+    print(f"echo {input} | {' '.join(args)}")
+    env = os.environ.copy()
+    env["PROJ_DEBUG"] = "3"
     p = subprocess.run(args, input=input, text=True, capture_output=True, env=env)
     if print_debug:
         print("PROJ DEBUG output:")
