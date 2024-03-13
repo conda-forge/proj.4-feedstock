@@ -44,6 +44,7 @@ def run_twice(cmd, input):
     r1 = run(cmd, input)
     r2 = run(cmd, input, print_inout=False)
     if r1.stdout != r2.stdout:
+        print(r2.stdout)
         print("Different results! Here are the differences with PROJ_DEBUG=3:")
         d = difflib.Differ()
         e1 = r1.stderr.splitlines(keepends=True)
