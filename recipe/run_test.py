@@ -18,15 +18,19 @@ def print_env(name):
 
 
 def run(cmd, input, print_inout=True, print_debug=False):
-    args = cmd.split()
     if print_inout:
-        print(f"echo {input} | {' '.join(args)}")
-    p = subprocess.run(args, input=input, text=True, capture_output=True)
+        print(f"echo {input} | {cmd}")
+    p = subprocess.run(cmd.split(), input=input, text=True, capture_output=True)
     if print_debug:
         print("PROJ DEBUG output:")
         print(p.stderr)
     if print_inout:
         print(p.stdout.strip())
+    if p.returncode != 0:
+        global exit_code
+        exit_code += 1
+        if not print_debug and p.stderr:
+            print(p.stderr)
     return p
 
 
@@ -76,5 +80,5 @@ print()
 run("cs2cs +init=epsg:4326 +to +init=epsg:2975", "-105 40")
 print()
 
-print(f"Done {sys.argv[0]}")
+print(f"Done {sys.argv[0]} with exit code {exit_code}")
 sys.exit(exit_code)
