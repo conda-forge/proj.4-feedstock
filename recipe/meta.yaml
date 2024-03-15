@@ -36,8 +36,6 @@ requirements:
     - proj4 ==999999999999
 
 test:
-  requires:
-    - python
   commands:
     - test -f ${PREFIX}/lib/libproj${SHLIB_EXT}  # [unix]
     - test ! -f ${PREFIX}/lib/libproj.a          # [unix]
