@@ -1,4 +1,4 @@
-{% set version = "9.3.1" %}
+{% set version = "9.4.0" %}
 
 package:
   name: proj
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://download.osgeo.org/proj/proj-{{ version }}.tar.gz
-  sha256: b0f919cb9e1f42f803a3e616c2b63a78e4d81ecfaed80978d570d3a5e29d10bc
+  sha256: 3643b19b1622fe6b2e3113bdb623969f5117984b39f173b4e3fb19a8833bd216
   patches:
     - define_OLD_BUGGY_REMQUO.patch
 
@@ -40,13 +40,7 @@ test:
     - test -f ${PREFIX}/lib/libproj${SHLIB_EXT}  # [unix]
     - test ! -f ${PREFIX}/lib/libproj.a          # [unix]
     - if not exist %LIBRARY_LIB%\\proj.lib exit 1  # [win]
-    # should be the first CLI test to ensure cs2cs results don't change
-    # See https://github.com/conda-forge/proj.4-feedstock/pull/139
-    - >-
-      [[ $(echo 569704.57 4269024.67 | cs2cs EPSG:26915 +to EPSG:26715) == $(echo 569704.57 4269024.67 | cs2cs EPSG:26915 +to EPSG:26715) ]]  # [unix]
-    - echo -105 40 | proj +proj=utm +zone=13 +ellps=WGS84
-    - echo -117 30 | cs2cs +proj=latlong +datum=NAD27 +to +proj=latlong +datum=NAD83
-    - echo -105 40 | cs2cs +init=epsg:4326 +to +init=epsg:2975
+    # See other tests with run_test.py
 
 about:
   home: https://proj.org/
