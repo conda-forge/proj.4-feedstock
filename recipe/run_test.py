@@ -38,9 +38,8 @@ def run_twice(cmd, input):
     r1 = run(cmd, input)
     r2 = run(cmd, input, print_inout=False)
     if r1.stdout != r2.stdout:
-        if platform.machine() != "ppc64le":
-            global exit_code
-            exit_code += 1
+        global exit_code
+        exit_code += 1
         print(r2.stdout)
         print("Different results! Here are the differences with PROJ_DEBUG=3:")
         d = difflib.Differ()
