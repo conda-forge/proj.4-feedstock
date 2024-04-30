@@ -11,11 +11,12 @@ source:
     - define_OLD_BUGGY_REMQUO.patch
 
 build:
-  number: 0
+  number: 1
   run_exports:
     # so name changes in bugfix revisions.  Pin to bugfix revision.
     #    https://abi-laboratory.pro/tracker/timeline/proj/
     - {{ pin_subpackage('proj', max_pin='x.x.x') }}
+  skip: true  # [ppc64le]
 
 requirements:
   build:
