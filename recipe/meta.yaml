@@ -24,6 +24,7 @@ requirements:
     - make  # [not win]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - {{ stdlib('c') }}
     - sqlite     # [build_platform != target_platform]
   host:
     - sqlite
