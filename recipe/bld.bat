@@ -19,9 +19,9 @@ if errorlevel 1 exit 1
 
 set ACTIVATE_DIR=%PREFIX%\etc\conda\activate.d
 set DEACTIVATE_DIR=%PREFIX%\etc\conda\deactivate.d
-mkdir %ACTIVATE_DIR%
+if not exist %ACTIVATE_DIR% mkdir %ACTIVATE_DIR%
 if errorlevel 1 exit 1
-mkdir %DEACTIVATE_DIR%
+if not exist %DEACTIVATE_DIR% mkdir %DEACTIVATE_DIR%
 if errorlevel 1 exit 1
 
 copy %RECIPE_DIR%\scripts\activate.bat %ACTIVATE_DIR%\proj4-activate.bat
