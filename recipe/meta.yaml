@@ -16,7 +16,6 @@ build:
     # ABI has been stable across minor versions since 8.0.0
     #    https://abi-laboratory.pro/tracker/timeline/proj/
     - {{ pin_subpackage('proj', max_pin='x.x') }}
-  skip: true  # [ppc64le]
 
 requirements:
   build:
