@@ -41,6 +41,13 @@ Current build status
                 </a>
               </td>
             </tr><tr>
+              <td>linux_ppc64le</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=815&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/proj.4-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
               <td>osx_64</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=815&branchName=main">
@@ -79,14 +86,14 @@ Current release info
 Installing proj
 ===============
 
-Installing `proj` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `proj` from the `conda-forge/label/proj_dev` channel can be achieved by adding `conda-forge/label/proj_dev` to your channels with:
 
 ```
-conda config --add channels conda-forge
+conda config --add channels conda-forge/label/proj_dev
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `proj` can be installed with `conda`:
+Once the `conda-forge/label/proj_dev` channel has been enabled, `proj` can be installed with `conda`:
 
 ```
 conda install proj
@@ -101,26 +108,26 @@ mamba install proj
 It is possible to list all of the versions of `proj` available on your platform with `conda`:
 
 ```
-conda search proj --channel conda-forge
+conda search proj --channel conda-forge/label/proj_dev
 ```
 
 or with `mamba`:
 
 ```
-mamba search proj --channel conda-forge
+mamba search proj --channel conda-forge/label/proj_dev
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search proj --channel conda-forge
+mamba repoquery search proj --channel conda-forge/label/proj_dev
 
 # List packages depending on `proj`:
-mamba repoquery whoneeds proj --channel conda-forge
+mamba repoquery whoneeds proj --channel conda-forge/label/proj_dev
 
 # List dependencies of `proj`:
-mamba repoquery depends proj --channel conda-forge
+mamba repoquery depends proj --channel conda-forge/label/proj_dev
 ```
 
 
