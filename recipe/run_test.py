@@ -17,9 +17,12 @@ def print_env(name):
         print(f"{name} is not set")
 
 
-def run(cmd, input, print_inout=True, print_debug=False):
+def run(cmd, input=None, print_inout=True, print_debug=False):
     if print_inout:
-        print(f"echo {input} | {cmd}")
+        if input:
+            print(f"echo {input} | {cmd}")
+        else:
+            print(cmd)
     p = subprocess.run(cmd.split(), input=input, text=True, capture_output=True)
     if print_debug:
         print("PROJ DEBUG output:")
@@ -38,11 +41,10 @@ def run_twice(cmd, input):
     r1 = run(cmd, input)
     r2 = run(cmd, input, print_inout=False)
     if r1.stdout != r2.stdout:
-        if platform.machine() != "ppc64le":
-            global exit_code
-            exit_code += 1
+        global exit_code
+        exit_code += 1
         print(r2.stdout)
-        print("Different results! Here are the differences with PROJ_DEBUG=3:")
+        print("Different results! Here are the differences with PROJ_DEBUG=2:")
         d = difflib.Differ()
         e1 = r1.stderr.splitlines(keepends=True)
         e2 = r2.stderr.splitlines(keepends=True)
@@ -55,7 +57,7 @@ def run_twice(cmd, input):
 print("PROJ test diagnostics ...\n")
 
 print(f"platform.machine() -> {platform.machine()}")
-os.environ["PROJ_DEBUG"] = "3"
+os.environ["PROJ_DEBUG"] = "2"
 print_env("PROJ_DEBUG")
 print_env("PROJ_DATA")
 print_env("PROJ_NETWORK")
@@ -68,6 +70,8 @@ print()
 
 # should be the first CLI test to ensure cs2cs results don't change
 # See https://github.com/conda-forge/proj.4-feedstock/pull/139
+run("projsync --file us_noaa_nadcon5_nad27_nad83_1986_conus.tif")
+print()
 run_twice("cs2cs EPSG:26915 +to EPSG:26715", "569704.57 4269024.67")
 print()
 
