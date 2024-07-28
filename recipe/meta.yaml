@@ -11,7 +11,10 @@ source:
     - define_OLD_BUGGY_REMQUO.patch
 
 build:
-  number: 0
+  # A ridiculously high number to prevent conflicts with the release packages.
+  # The "proj_dev" label will prevent these packages from getting installed
+  # under normal circumstances.
+  number: 100
   run_exports:
     # ABI has been stable across minor versions since 8.0.0
     #    https://abi-laboratory.pro/tracker/timeline/proj/
