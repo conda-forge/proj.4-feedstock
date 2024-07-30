@@ -11,12 +11,11 @@ source:
     - define_OLD_BUGGY_REMQUO.patch
 
 build:
-  number: 0
+  number: 1
   run_exports:
     # ABI has been stable across minor versions since 8.0.0
     #    https://abi-laboratory.pro/tracker/timeline/proj/
     - {{ pin_subpackage('proj', max_pin='x.x') }}
-  skip: true  # [ppc64le]
 
 requirements:
   build:
