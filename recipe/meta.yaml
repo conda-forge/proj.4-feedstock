@@ -1,4 +1,4 @@
-{% set version = "9.4.1" %}
+{% set version = "9.5.0" %}
 
 package:
   name: proj
@@ -6,12 +6,12 @@ package:
 
 source:
   url: https://download.osgeo.org/proj/proj-{{ version }}.tar.gz
-  sha256: ffe20170ee2b952207adf8a195e2141eab12cda181e49fdeb54425d98c7171d7
+  sha256: 659af0d558f7c5618c322fde2d3392910806faee8684687959339021fa207d99
   patches:
     - define_OLD_BUGGY_REMQUO.patch
 
 build:
-  number: 1
+  number: 0
   run_exports:
     # ABI has been stable across minor versions since 8.0.0
     #    https://abi-laboratory.pro/tracker/timeline/proj/
