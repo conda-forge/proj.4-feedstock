@@ -25,14 +25,11 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ stdlib('c') }}
     - sqlite     # [build_platform != target_platform]
-    - gtest
-    - pytest
-    - pyyaml
   host:
     - sqlite
     - libtiff
     - libcurl
-    - gtest
+    - gtest  # [not win]
     - pytest
     - pyyaml
   run:
