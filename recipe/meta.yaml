@@ -1,4 +1,4 @@
-{% set version = "9.5.1" %}
+{% set version = "9.6.0" %}
 
 package:
   name: proj
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://download.osgeo.org/proj/proj-{{ version }}.tar.gz
-  sha256: a8395f9696338ffd46b0feb603edbb730fad6746fba77753c77f7f997345e3d3
+  sha256: d8cae521c311c39513193657e75767f7cfbf2f91bd202fcd4a200028d3b57e14
   patches:
     - define_OLD_BUGGY_REMQUO.patch
 
@@ -24,11 +24,16 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ stdlib('c') }}
-    - sqlite     # [build_platform != target_platform]
+    - sqlite  # [build_platform != target_platform]
+    - pytest  # [win]
+    - pyyaml  # [win]
   host:
     - sqlite
     - libtiff
     - libcurl
+    - gtest  # [not win]
+    - pytest
+    - pyyaml
   run:
     - sqlite
     - libtiff
