@@ -8,17 +8,13 @@ else
     EXE_SQLITE3=${BUILD_PREFIX}/bin/sqlite3
 fi
 
-# skip building and running tests
-echo "CONDA_BUILD_CROSS_COMPILATION=${CONDA_BUILD_CROSS_COMPILATION:-}"
-echo "CROSSCOMPILING_EMULATOR=${CROSSCOMPILING_EMULATOR:-}"
-if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR:-}" != "" ]]; then
+if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" == "1" && "${CROSSCOMPILING_EMULATOR:-}" == "" ]]; then
+  # skip building and running tests when cross-compiling without an emulator
   BUILD_TESTING=OFF
 else
   # by default make tests to run with ctest after build
   BUILD_TESTING=ON
 fi
-# temporarily set this on to see what fails...
-BUILD_TESTING=ON
 
 cmake ${CMAKE_ARGS} \
       -D CMAKE_BUILD_TYPE=Release \
