@@ -13,7 +13,7 @@ source:
     - msvc_c5287_geodesic.patch
 
 build:
-  number: 0
+  number: 1
   run_exports:
     # ABI has been stable across minor versions since 8.0.0
     #    https://abi-laboratory.pro/tracker/timeline/proj/
