@@ -9,6 +9,8 @@ source:
   sha256: 53d0cafaee3bb2390264a38668ed31d90787de05e71378ad7a8f35bb34c575d1
   patches:
     - define_OLD_BUGGY_REMQUO.patch
+    # Remove after https://github.com/OSGeo/PROJ/pull/4527 is released (9.6.3?)
+    - msvc_c5287_geodesic.patch
 
 build:
   number: 0
