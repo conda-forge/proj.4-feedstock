@@ -1,0 +1,58 @@
+From d656da3434eaefb113aeca7f964bcb65fc0e9ae5 Mon Sep 17 00:00:00 2001
+From: Even Rouault <even.rouault@spatialys.com>
+Date: Wed, 18 Jun 2025 01:06:03 +0200
+Subject: [PATCH] proj_trans_bounds(): fix 9.6.2 regression when going from
+ long/lat crossing antimeridian to projected
+
+Fixes issues introduced by https://github.com/OSGeo/PROJ/pull/4513 where
+we generate an output BBOX that is too large.
+
+Fixes https://github.com/pyproj4/pyproj/issues/1501
+---
+ src/trans_bounds.cpp     | 4 ++--
+ test/unit/test_c_api.cpp | 8 ++++----
+ 2 files changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/src/trans_bounds.cpp b/src/trans_bounds.cpp
+index e829c703ee..d5d2809e54 100644
+--- a/src/trans_bounds.cpp
++++ b/src/trans_bounds.cpp
+@@ -569,8 +569,8 @@ int proj_trans_bounds(PJ_CONTEXT *context, PJ *P, PJ_DIRECTION direction,
+         // Sample points within the source grid
+         for (int j = 1; j < side_pts - 1; ++j) {
+             for (int i = 0; i < side_pts; ++i) {
+-                x_boundary_array[i] = std::min(xmin, xmax) + i * delta_x;
+-                y_boundary_array[i] = std::min(ymin, ymax) + j * delta_y;
++                x_boundary_array[i] = xmin + i * delta_x;
++                y_boundary_array[i] = ymin + j * delta_y;
+             }
+             proj_trans_generic(P, direction, x_boundary_array.data(),
+                                sizeof(double), side_pts,
+diff --git a/test/unit/test_c_api.cpp b/test/unit/test_c_api.cpp
+index f7d7bf3964..443a896a0a 100644
+--- a/test/unit/test_c_api.cpp
++++ b/test/unit/test_c_api.cpp
+@@ -6223,8 +6223,8 @@ TEST_F(CApi, proj_trans_bounds_antimeridian_xy) {
+                                     &out_right, &out_top, 21);
+     EXPECT_TRUE(success == 1);
+     EXPECT_NEAR(out_left, 1722483.900174921, 1);
+-    EXPECT_NEAR(out_bottom, 4795714.1718160734, 1);
+-    EXPECT_NEAR(out_right, 7095599.9757999768, 1);
++    EXPECT_NEAR(out_bottom, 5228058.6143420935, 1);
++    EXPECT_NEAR(out_right, 4624385.4948085546, 1);
+     EXPECT_NEAR(out_top, 8692574.544944234, 1);
+     double out_left_inv;
+     double out_bottom_inv;
+@@ -6255,10 +6255,10 @@ TEST_F(CApi, proj_trans_bounds_antimeridian) {
+         proj_trans_bounds(m_ctxt, P, PJ_FWD, -55.95, 160.6, -25.88, -171.2,
+                           &out_left, &out_bottom, &out_right, &out_top, 21);
+     EXPECT_TRUE(success == 1);
+-    EXPECT_NEAR(out_left, 4695514.1225397848, 1);
++    EXPECT_NEAR(out_left, 5228058.6143420935, 1);
+     EXPECT_NEAR(out_bottom, 1722483.900174921, 1);
+     EXPECT_NEAR(out_right, 8692574.544944234, 1);
+-    EXPECT_NEAR(out_top, 7053083.9457852989, 1);
++    EXPECT_NEAR(out_top, 4624385.4948085546, 1);
+     double out_left_inv;
+     double out_bottom_inv;
+     double out_right_inv;
