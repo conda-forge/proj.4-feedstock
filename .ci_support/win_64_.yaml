@@ -13,7 +13,7 @@ libcurl:
 libtiff:
 - '4.7'
 proj:
-- '9.5'
+- '9.6'
 sqlite:
 - '3'
 target_platform:
