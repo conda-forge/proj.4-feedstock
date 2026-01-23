@@ -1,7 +1,7 @@
 schema_version: 1
 
 context:
-  version: 9.7.1
+  version: "9.7.1"
 
 package:
   name: proj
@@ -14,7 +14,7 @@ source:
     - 0001-define_OLD_BUGGY_REMQUO.patch
 
 build:
-  number: 1
+  number: 2
 
 requirements:
   build:
@@ -44,9 +44,9 @@ requirements:
 tests:
   - script:
       - if: unix
-        then: test -f ${PREFIX}/lib/libproj${SHLIB_EXT}
-      - if: unix
-        then: test ! -f ${PREFIX}/lib/libproj.a
+        then: 
+         - test -f ${PREFIX}/lib/libproj${SHLIB_EXT}
+         - test ! -f ${PREFIX}/lib/libproj.a
       - if: win
         then: if not exist %LIBRARY_LIB%\\proj.lib exit 1
 
