@@ -1,4 +1,4 @@
-:: Restore previous GDAL env vars if they were set.
+:: Restore previous PROJ env vars if they were set.
 
 @set "PROJ_DATA="
 @set "PROJ_NETWORK="
