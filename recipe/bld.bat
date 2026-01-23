@@ -39,3 +39,10 @@ if errorlevel 1 exit 1
 
 copy %RECIPE_DIR%\scripts\deactivate.sh %DEACTIVATE_DIR%\proj4-deactivate.sh
 if errorlevel 1 exit 1
+
+:: Copy powershell activation scripts
+copy %RECIPE_DIR%\scripts\activate.ps1 %ACTIVATE_DIR%\proj4-activate.ps1
+if errorlevel 1 exit 1
+
+copy %RECIPE_DIR%\scripts\deactivate.ps1 %DEACTIVATE_DIR%\proj4-deactivate.ps1
+if errorlevel 1 exit 1
