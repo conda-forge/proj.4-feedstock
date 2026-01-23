@@ -20,8 +20,6 @@ libcurl:
 - '8'
 libtiff:
 - '4.7'
-proj:
-- '9.7'
 sqlite:
 - '3'
 target_platform:
