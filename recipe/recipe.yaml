@@ -1,0 +1,67 @@
+schema_version: 1
+
+context:
+  version: "9.7.1"
+
+package:
+  name: proj
+  version: ${{ version }}
+
+source:
+  url: https://download.osgeo.org/proj/proj-${{ version }}.tar.gz
+  sha256: 6c097dc803c561929cdfcc46e4bf9945ea977611fb31493ad14e88edaeae260f
+  patches:
+    - 0001-define_OLD_BUGGY_REMQUO.patch
+
+build:
+  number: 2
+
+requirements:
+  build:
+    - cmake
+    - if: not win
+      then: make
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib('c') }}
+    - if: build_platform != target_platform
+      then: sqlite
+    - pytest
+    - pyyaml
+  host:
+    - sqlite
+    - libtiff
+    - libcurl
+  run:
+    - sqlite
+    - libtiff
+    - libcurl
+  run_exports:
+    - ${{ pin_subpackage('proj', upper_bound='x.x') }}
+  run_constraints:
+    - proj4 ==999999999999
+
+tests:
+  - script:
+      - if: unix
+        then: 
+         - test -f ${PREFIX}/lib/libproj${SHLIB_EXT}
+         - test ! -f ${PREFIX}/lib/libproj.a
+      - if: win
+        then: if not exist %LIBRARY_LIB%\\proj.lib exit 1
+
+about:
+  license: MIT
+  license_file: COPYING
+  summary: Cartographic Projections and Coordinate Transformations Library
+  homepage: https://proj.org/
+
+extra:
+  recipe-maintainers:
+    - hobu
+    - msarahan
+    - mwtoews
+    - ocefpaf
+    - pelson
+    - snowman2
+    - xylar
