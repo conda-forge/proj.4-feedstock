@@ -14,7 +14,7 @@ source:
     - 0001-define_OLD_BUGGY_REMQUO.patch
 
 build:
-  number: 2
+  number: 3
 
 requirements:
   build:
