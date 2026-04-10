@@ -1,7 +1,7 @@
 schema_version: 1
 
 context:
-  version: "9.8.0"
+  version: "9.8.1"
 
 package:
   name: proj
@@ -9,9 +9,10 @@ package:
 
 source:
   url: https://download.osgeo.org/proj/proj-${{ version }}.tar.gz
-  sha256: a8b493b00cf4d08b712b9e063ed5e53e2be90fcde46770e9dbd773341f378f43
+  sha256: af5b731c145c1d13c4e3b4eeb7d167e94e845e440f71e3496b4ed8dae0291960
   patches:
     - 0001-define_OLD_BUGGY_REMQUO.patch
+    - 0002-sqlite-3.53.0-regression.patch
 
 build:
   number: 0
