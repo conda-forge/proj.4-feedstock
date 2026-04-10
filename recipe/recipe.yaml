@@ -12,6 +12,7 @@ source:
   sha256: af5b731c145c1d13c4e3b4eeb7d167e94e845e440f71e3496b4ed8dae0291960
   patches:
     - 0001-define_OLD_BUGGY_REMQUO.patch
+    - 0002-sqlite-3.53.0-regression.patch
 
 build:
   number: 0
