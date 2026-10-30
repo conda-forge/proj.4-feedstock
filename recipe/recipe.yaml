@@ -15,7 +15,7 @@ source:
     - 0002-sqlite-3.53.0-regression.patch
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
