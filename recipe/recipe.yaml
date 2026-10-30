@@ -15,7 +15,7 @@ source:
     - 0002-sqlite-3.53.0-regression.patch
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -43,13 +43,20 @@ requirements:
     - proj4 ==999999999999
 
 tests:
-  - script:
+  - requirements:
+      run:
+        - python
+    files:
+      recipe:
+        - run_test.py
+    script:
       - if: unix
         then:
           - test -f ${PREFIX}/lib/libproj${SHLIB_EXT}
           - test ! -f ${PREFIX}/lib/libproj.a
       - if: win
         then: if not exist %LIBRARY_LIB%\\proj.lib exit 1
+      - python run_test.py
 
 about:
   license: MIT
